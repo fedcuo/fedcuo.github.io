@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- GitHub Calendar CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
 </head>
 <body>
     <!-- Theme Toggle Button -->
@@ -365,75 +367,34 @@
                 <span class="title-text">GitHub Activity</span>
                 <span class="title-line"></span>
             </h2>
-            <div class="contributions-content">
-                <div class="contributions-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <p class="stat-value" data-stat="contributions" data-target="0">0</p>
-                            <p class="stat-label">Contributions (90 giorni)</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <p class="stat-value" data-stat="repositories" data-target="0">0</p>
-                            <p class="stat-label">Repositories</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <p class="stat-value" data-stat="stars" data-target="0">0</p>
-                            <p class="stat-label">Total Stars</p>
-                        </div>
-                    </div>
+            <!-- GitHub Stats Cards usando API esterna -->
+            <div class="github-stats-wrapper">
+                <div class="stats-row">
+                    <img class="github-stats-card" 
+                         src="https://github-readme-stats.vercel.app/api?username=fedcuo&show_icons=true&theme=transparent&hide_border=true&title_color=3b82f6&icon_color=3b82f6&text_color=6b7280&bg_color=00000000" 
+                         alt="GitHub Stats"
+                         loading="lazy">
                 </div>
-                <div class="contributions-graph">
-                    <h3>Contribution Activity</h3>
-                    <p class="graph-subtitle">Ultimi 12 mesi di attività su GitHub</p>
-                    <div id="github-graph" class="github-graph">
-                        <!-- Il grafico sarà generato dinamicamente con JavaScript -->
-                    </div>
-                    <div class="graph-legend">
-                        <span>Meno</span>
-                        <div class="legend-scale">
-                            <span class="legend-box level-0"></span>
-                            <span class="legend-box level-1"></span>
-                            <span class="legend-box level-2"></span>
-                            <span class="legend-box level-3"></span>
-                            <span class="legend-box level-4"></span>
-                        </div>
-                        <span>Più</span>
-                    </div>
+                <div class="stats-row">
+                    <img class="github-stats-card" 
+                         src="https://github-readme-stats.vercel.app/api/top-langs/?username=fedcuo&layout=compact&theme=transparent&hide_border=true&title_color=3b82f6&text_color=6b7280&bg_color=00000000" 
+                         alt="Top Languages"
+                         loading="lazy">
+                    <img class="github-stats-card streak" 
+                         src="https://github-readme-streak-stats.herokuapp.com/?user=fedcuo&theme=transparent&hide_border=true&ring=3b82f6&fire=3b82f6&currStreakLabel=6b7280&sideNums=6b7280&currStreakNum=3b82f6&sideLabels=6b7280&dates=6b7280&background=00000000" 
+                         alt="GitHub Streak"
+                         loading="lazy">
                 </div>
-                
-                <!-- Optional: Recent Activity -->
-                <div class="recent-activity-section" style="margin-top: 2rem;">
-                    <h3>Attività Recente</h3>
-                    <div id="recent-activity" class="recent-activity-list">
-                        <div class="loading">Caricamento attività...</div>
-                    </div>
-                </div>
-                
-                <!-- Optional: Language Stats -->
-                <div class="language-stats-section" style="margin-top: 2rem;">
-                    <h3>Linguaggi Più Usati</h3>
-                    <div id="language-stats" class="language-stats-list">
-                        <div class="loading">Caricamento statistiche...</div>
+            </div>
+
+            <!-- GitHub Contribution Graph -->
+            <div class="contributions-graph">
+                <h3>Contribution Activity</h3>
+                <p class="graph-subtitle">Ultimi 12 mesi di attività su GitHub</p>
+                <div class="calendar-wrapper">
+                    <!-- GitHub Calendar verrà caricato qui -->
+                    <div class="calendar" id="github-calendar">
+                        Caricamento contribuzioni GitHub...
                     </div>
                 </div>
             </div>
@@ -474,7 +435,40 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
-    <script src="github-integration.js"></script>
+    <!-- GitHub Calendar Library -->
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+    <script>
+        // Inizializza GitHub Calendar
+        // CAMBIA 'tuousername' con il tuo vero username GitHub
+        GitHubCalendar(".calendar", "fedcuo", { 
+            responsive: true,
+            tooltips: true,
+            global_stats: false
+        });
+        
+        // Gestisci il tema per il grafico
+        const applyCalendarTheme = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const calendar = document.querySelector('.calendar');
+            if (calendar) {
+                calendar.style.setProperty('--color-calendar-graph-day-bg', isDark ? '#1a1a1a' : '#ebedf0');
+                calendar.style.setProperty('--color-calendar-graph-day-border', isDark ? '#27272a' : '#e2e8f0');
+                calendar.style.setProperty('--color-calendar-graph-day-L1-bg', 'rgba(59, 130, 246, 0.3)');
+                calendar.style.setProperty('--color-calendar-graph-day-L2-bg', 'rgba(59, 130, 246, 0.5)');
+                calendar.style.setProperty('--color-calendar-graph-day-L3-bg', 'rgba(59, 130, 246, 0.7)');
+                calendar.style.setProperty('--color-calendar-graph-day-L4-bg', '#3b82f6');
+            }
+        };
+        
+        // Applica il tema al caricamento
+        setTimeout(applyCalendarTheme, 500);
+        
+        // Riapplica quando cambia il tema
+        document.getElementById('theme-toggle')?.addEventListener('click', () => {
+            setTimeout(applyCalendarTheme, 100);
+        });
+    </script>
 </body>
 </html>
