@@ -144,56 +144,6 @@ function checkCounters() {
 window.addEventListener('scroll', checkCounters);
 checkCounters(); // Check on load
 
-// ==================== GITHUB CONTRIBUTION GRAPH ====================
-function generateGitHubGraph() {
-    const graphContainer = document.getElementById('github-graph');
-    if (!graphContainer) return;
-    
-    const grid = document.createElement('div');
-    grid.className = 'graph-grid';
-    
-    // Generate 52 weeks * 7 days = 364 cells
-    const weeks = 52;
-    const daysPerWeek = 7;
-    
-    for (let week = 0; week < weeks; week++) {
-        for (let day = 0; day < daysPerWeek; day++) {
-            const cell = document.createElement('div');
-            cell.className = 'graph-cell';
-            
-            // Generate random contribution level (0-4)
-            // In a real implementation, this would come from GitHub API
-            const level = Math.floor(Math.random() * 5);
-            cell.classList.add(`level-${level}`);
-            
-            // Add tooltip (optional)
-            const contributions = level === 0 ? 0 : Math.floor(Math.random() * 10) + level * 3;
-            const date = new Date();
-            date.setDate(date.getDate() - ((weeks - week) * 7 + (daysPerWeek - day)));
-            
-            cell.setAttribute('data-tooltip', `${contributions} contributions on ${date.toLocaleDateString()}`);
-            cell.setAttribute('data-level', level);
-            
-            grid.appendChild(cell);
-        }
-    }
-    
-    graphContainer.appendChild(grid);
-    
-    // Add hover effect with tooltip (basic implementation)
-    const cells = graphContainer.querySelectorAll('.graph-cell');
-    cells.forEach(cell => {
-        cell.addEventListener('mouseenter', function(e) {
-            const tooltip = this.getAttribute('data-tooltip');
-            // You can add a custom tooltip element here
-            this.setAttribute('title', tooltip);
-        });
-    });
-}
-
-// Generate the graph on page load
-generateGitHubGraph();
-
 // ==================== INTERSECTION OBSERVER FOR ANIMATIONS ====================
 const observerOptions = {
     threshold: 0.1,
@@ -217,7 +167,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     observer.observe(card);
 });
 
-// Observe stat cards
+// Observe stat cards (se presenti)
 document.querySelectorAll('.stat-card').forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
@@ -276,66 +226,6 @@ document.querySelectorAll('.about-text, .about-image, .contributions-graph').for
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll(); // Check on load
 
-// ==================== ENHANCED GITHUB GRAPH WITH REAL DATA STRUCTURE ====================
-// This function creates a more realistic contribution pattern
-function generateRealisticContributions() {
-    const graphContainer = document.getElementById('github-graph');
-    if (!graphContainer || graphContainer.children.length > 0) return;
-    
-    const grid = document.createElement('div');
-    grid.className = 'graph-grid';
-    
-    // Create a pattern that looks more realistic
-    const today = new Date();
-    const startDate = new Date(today);
-    startDate.setDate(startDate.getDate() - 364); // 52 weeks back
-    
-    // Create contribution pattern (more active on weekdays)
-    for (let i = 0; i < 364; i++) {
-        const currentDate = new Date(startDate);
-        currentDate.setDate(currentDate.getDate() + i);
-        
-        const cell = document.createElement('div');
-        cell.className = 'graph-cell';
-        
-        const dayOfWeek = currentDate.getDay();
-        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-        
-        // Generate more realistic contribution levels
-        let level;
-        const random = Math.random();
-        
-        if (isWeekend) {
-            // Less activity on weekends
-            if (random < 0.5) level = 0;
-            else if (random < 0.75) level = 1;
-            else if (random < 0.9) level = 2;
-            else level = 3;
-        } else {
-            // More activity on weekdays
-            if (random < 0.2) level = 0;
-            else if (random < 0.4) level = 1;
-            else if (random < 0.6) level = 2;
-            else if (random < 0.85) level = 3;
-            else level = 4;
-        }
-        
-        cell.classList.add(`level-${level}`);
-        
-        const contributions = level === 0 ? 0 : Math.floor(Math.random() * 5) + level * 2;
-        cell.setAttribute('title', `${contributions} contributions on ${currentDate.toLocaleDateString('it-IT')}`);
-        cell.setAttribute('data-date', currentDate.toISOString().split('T')[0]);
-        cell.setAttribute('data-count', contributions);
-        
-        grid.appendChild(cell);
-    }
-    
-    graphContainer.appendChild(grid);
-}
-
-// Generate realistic graph
-generateRealisticContributions();
-
 // ==================== PARALLAX EFFECT ON HERO ====================
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
@@ -344,45 +234,6 @@ window.addEventListener('scroll', () => {
         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
 });
-
-// ==================== CURSOR TRAIL EFFECT (Optional Enhancement) ====================
-// Uncomment if you want a subtle cursor trail effect
-/*
-const coords = { x: 0, y: 0 };
-const circles = document.querySelectorAll('.cursor-circle');
-
-circles.forEach((circle) => {
-    circle.x = 0;
-    circle.y = 0;
-});
-
-window.addEventListener('mousemove', (e) => {
-    coords.x = e.clientX;
-    coords.y = e.clientY;
-});
-
-function animateCircles() {
-    let x = coords.x;
-    let y = coords.y;
-    
-    circles.forEach((circle, index) => {
-        circle.style.left = x - 12 + 'px';
-        circle.style.top = y - 12 + 'px';
-        circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
-        
-        circle.x = x;
-        circle.y = y;
-        
-        const nextCircle = circles[index + 1] || circles[0];
-        x += (nextCircle.x - x) * 0.3;
-        y += (nextCircle.y - y) * 0.3;
-    });
-    
-    requestAnimationFrame(animateCircles);
-}
-
-animateCircles();
-*/
 
 // ==================== PERFORMANCE OPTIMIZATION ====================
 // Debounce function for scroll events
@@ -426,12 +277,6 @@ if ('IntersectionObserver' in window) {
 // ==================== CONSOLE MESSAGE ====================
 console.log('%c🚀 Portfolio loaded successfully!', 'color: #3b82f6; font-size: 16px; font-weight: bold;');
 console.log('%c💼 Interested in the code? Check out the repository!', 'color: #60a5fa; font-size: 14px;');
-
-// ==================== PREVENT CONSOLE ERRORS ====================
-// Add error handling for missing elements
-if (!document.getElementById('github-graph')) {
-    console.warn('GitHub graph container not found');
-}
 
 // ==================== UTILITY FUNCTIONS ====================
 // Get query parameter (useful for tracking/analytics)
