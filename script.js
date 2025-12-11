@@ -17,10 +17,11 @@ themeToggle.addEventListener('click', () => {
 // ==================== TYPING ANIMATION ====================
 const typingText = document.querySelector('.typing-text');
 const texts = [
-    'Full Stack Developer',
-    'Web Designer',
-    'Problem Solver',
-    'Creative Thinker'
+    'Backend Developer',
+    'Python Enthusiast',
+    'Mobile Explorer',
+    'Home Automation Fan',
+    'Basketball Lover'
 ];
 
 let textIndex = 0;
