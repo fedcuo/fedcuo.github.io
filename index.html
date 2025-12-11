@@ -370,13 +370,13 @@
                     <div class="stat-card">
                         <div class="stat-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
                             </svg>
                         </div>
                         <div class="stat-info">
-                            <p class="stat-value" data-target="150">0</p>
-                            <p class="stat-label">Contributions</p>
+                            <p class="stat-value" data-stat="contributions" data-target="0">0</p>
+                            <p class="stat-label">Contributions (90 giorni)</p>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -386,20 +386,19 @@
                             </svg>
                         </div>
                         <div class="stat-info">
-                            <p class="stat-value" data-target="25">0</p>
+                            <p class="stat-value" data-stat="repositories" data-target="0">0</p>
                             <p class="stat-label">Repositories</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
                         </div>
                         <div class="stat-info">
-                            <p class="stat-value" data-target="8">0</p>
-                            <p class="stat-label">Pull Requests</p>
+                            <p class="stat-value" data-stat="stars" data-target="0">0</p>
+                            <p class="stat-label">Total Stars</p>
                         </div>
                     </div>
                 </div>
@@ -419,6 +418,22 @@
                             <span class="legend-box level-4"></span>
                         </div>
                         <span>Più</span>
+                    </div>
+                </div>
+                
+                <!-- Optional: Recent Activity -->
+                <div class="recent-activity-section" style="margin-top: 2rem;">
+                    <h3>Attività Recente</h3>
+                    <div id="recent-activity" class="recent-activity-list">
+                        <div class="loading">Caricamento attività...</div>
+                    </div>
+                </div>
+                
+                <!-- Optional: Language Stats -->
+                <div class="language-stats-section" style="margin-top: 2rem;">
+                    <h3>Linguaggi Più Usati</h3>
+                    <div id="language-stats" class="language-stats-list">
+                        <div class="loading">Caricamento statistiche...</div>
                     </div>
                 </div>
             </div>
@@ -460,5 +475,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="github-integration.js"></script>
 </body>
 </html>
