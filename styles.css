@@ -1114,6 +1114,56 @@ section {
     color: var(--accent-color);
 }
 
+/* Calendar Interactive Styles */
+.calendar-interactive {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+}
+
+.calendar-click-overlay {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.calendar-interactive:hover .calendar-click-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.calendar-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    text-align: center;
+}
+
 /* ==================== ANIMATIONS ==================== */
 @keyframes fadeInUp {
     from {
