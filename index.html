@@ -371,15 +371,17 @@
             <div class="github-stats-wrapper">
                 <div class="stats-row">
                     <img class="github-stats-card" 
-                         src="https://github-readme-stats.vercel.app/api?username=fedcuo&show_icons=true&theme=transparent&hide_border=true&title_color=3b82f6&icon_color=3b82f6&text_color=6b7280&bg_color=00000000" 
+                         src="https://github-readme-stats.vercel.app/api?username=fedcuo&show_icons=true&theme=transparent&hide_border=true&title_color=3b82f6&icon_color=3b82f6&text_color=6b7280&bg_color=00000000&cache_seconds=1800" 
                          alt="GitHub Stats"
-                         loading="lazy">
+                         loading="lazy"
+                         onerror="setTimeout(() => this.src = this.src.split('?')[0] + '?' + new URLSearchParams({...Object.fromEntries(new URLSearchParams(this.src.split('?')[1])), t: Date.now()}).toString(), 3000)">
                 </div>
                 <div class="stats-row">
                     <img class="github-stats-card" 
-                         src="https://github-readme-stats.vercel.app/api/top-langs/?username=fedcuo&layout=compact&theme=transparent&hide_border=true&title_color=3b82f6&text_color=6b7280&bg_color=00000000" 
+                         src="https://github-readme-stats.vercel.app/api/top-langs/?username=fedcuo&layout=compact&theme=transparent&hide_border=true&title_color=3b82f6&text_color=6b7280&bg_color=00000000&cache_seconds=1800" 
                          alt="Top Languages"
-                         loading="lazy">
+                         loading="lazy"
+                         onerror="setTimeout(() => this.src = this.src.split('?')[0] + '?' + new URLSearchParams({...Object.fromEntries(new URLSearchParams(this.src.split('?')[1])), t: Date.now()}).toString(), 3000)">
                     <img class="github-stats-card streak" 
                          src="https://github-readme-streak-stats.herokuapp.com/?user=fedcuo&theme=transparent&hide_border=true&ring=3b82f6&fire=3b82f6&currStreakLabel=6b7280&sideNums=6b7280&currStreakNum=3b82f6&sideLabels=6b7280&dates=6b7280&background=00000000" 
                          alt="GitHub Streak"
